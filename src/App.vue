@@ -1,23 +1,24 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+  <div>
+    <app-nav/>
   </div>
 </template>
 
 <script>
+import Nav from './components/Nav';
+
 export default {
-  name: 'app',
+  components: {
+    appNav: Nav,
+  },
 };
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+@import '../node_modules/sanitize.scss/_sanitize';
+
+body {
+  padding: 0;
+  margin: 0;
 }
 </style>
