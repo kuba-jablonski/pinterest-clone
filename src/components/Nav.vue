@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav :class="{ hidden: !navbar }">
     <div class="nav-head">
       Login
     </div>
@@ -18,14 +18,27 @@
   </nav>
 </template>
 
+<script>
+export default {
+  computed: {
+    navbar() {
+      return this.$store.getters.navbar;
+    },
+  },
+};
+</script>
+
+
 <style lang="scss" scoped>
 @import 'src/assets/scss/_colors';
 
 nav {
-  width: 6rem;
+  position: relative;
+  width: 5rem;
   min-height: 100%;
   background: $navbar-color;
-  grid-area: nav;
+  transform: translateX(0);
+  transition: transform 0.3s ease;
 }
 
 .nav-head {
@@ -55,6 +68,10 @@ nav {
   &:hover {
     color: #fff;
   }
+}
+
+.hidden {
+  transform: translateX(-6rem);
 }
 </style>
 

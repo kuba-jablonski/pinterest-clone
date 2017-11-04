@@ -1,11 +1,22 @@
 <template>
   <header>
     <div class="header-content">
-      <i class="fa fa-bars menu" aria-hidden="true"></i>
+      <i @click="toggleNav" class="fa fa-bars menu" aria-hidden="true"></i>
       <h1 class="brand">Pinclone</h1>
     </div>
   </header>
 </template>
+
+<script>
+export default {
+  methods: {
+    toggleNav() {
+      this.$store.commit('TOGGLE_NAV');
+    },
+  },
+};
+</script>
+
 
 <style lang="scss" scoped>
 @import 'src/assets/scss/_colors';
@@ -20,7 +31,7 @@ header {
   font-size: 25px;
   height: 100%;
   cursor: pointer;
-  width: 6rem;
+  width: 5rem;
   text-align: center;
 }
 
