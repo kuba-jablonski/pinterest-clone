@@ -1,24 +1,27 @@
 <template>
   <div>
-    <app-nav/>
+    <app-header/>
   </div>
 </template>
 
 <script>
-import Nav from './components/Nav';
+import Header from './components/Header';
 
 export default {
   components: {
-    appNav: Nav,
+    appHeader: Header,
   },
 };
 </script>
 
 <style lang="scss">
 @import '../node_modules/sanitize.scss/_sanitize';
+@import 'src/assets/scss/_colors';
+@import 'src/assets/scss/_typography';
 
 body {
   padding: 0;
   margin: 0;
+  background: $background-color;
 }
 </style>
