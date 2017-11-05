@@ -8,9 +8,9 @@
         <i class="fa fa-google fa-2x icon" aria-hidden="true"></i>
         Google
       </a>
-      <a class="nav-item">
-        <i class="fa fa-facebook fa-2x icon" aria-hidden="true"></i>
-        Facebook
+      <a @click="signInWithProvider(authProviders.github)" class="nav-item">
+        <i class="fa fa-github fa-2x icon" aria-hidden="true"></i>
+        Github
       </a>
       <a class="nav-item">
         <i class="fa fa-twitter fa-2x icon" aria-hidden="true"></i>
