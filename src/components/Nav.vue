@@ -1,20 +1,28 @@
 <template>
   <nav :class="{ hidden: !navbar }">
-    <div class="nav-head">
-      Login
-    </div>
-    <a class="nav-item">
-      <i class="fa fa-google fa-2x icon" aria-hidden="true"></i>
-      Google
-    </a>
-    <a class="nav-item">
-      <i class="fa fa-facebook fa-2x icon" aria-hidden="true"></i>
-      Facebook
-    </a>
-    <a class="nav-item">
-      <i class="fa fa-twitter fa-2x icon" aria-hidden="true"></i>
-      Twitter
-    </a>
+    <template v-if="authenticated === false">
+      <div class="nav-head">
+        Login
+      </div>
+      <a @click="signInWithProvider(authProviders.google)" class="nav-item">
+        <i class="fa fa-google fa-2x icon" aria-hidden="true"></i>
+        Google
+      </a>
+      <a class="nav-item">
+        <i class="fa fa-facebook fa-2x icon" aria-hidden="true"></i>
+        Facebook
+      </a>
+      <a class="nav-item">
+        <i class="fa fa-twitter fa-2x icon" aria-hidden="true"></i>
+        Twitter
+      </a>
+    </template>
+    <template v-if="authenticated">
+      <a @click="signOut" class="nav-item">
+        <i class="fa fa-sign-out fa-2x icon" aria-hidden="true"></i>
+        Signout
+      </a>
+    </template>
   </nav>
 </template>
 
@@ -29,9 +37,20 @@ export default {
       },
     };
   },
+  methods: {
+    signInWithProvider(provider) {
+      firebase.auth().signInWithRedirect(provider);
+    },
+    signOut() {
+      firebase.auth().signOut();
+    },
+  },
   computed: {
     navbar() {
       return this.$store.getters.navbar;
+    },
+    authenticated() {
+      return this.$store.getters.authenticated;
     },
   },
 };

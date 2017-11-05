@@ -30,5 +30,6 @@ export default new Vuex.Store({
   },
   getters: {
     navbar: state => state.navbar,
+    authenticated: state => state.authenticated,
   },
 });
