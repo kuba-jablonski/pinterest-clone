@@ -19,7 +19,16 @@
 </template>
 
 <script>
+import firebase from 'firebase';
+
 export default {
+  data() {
+    return {
+      authProviders: {
+        google: new firebase.auth.GoogleAuthProvider(),
+      },
+    };
+  },
   computed: {
     navbar() {
       return this.$store.getters.navbar;
@@ -72,6 +81,10 @@ nav {
 
 .hidden {
   transform: translateX(-6rem);
+}
+
+.active {
+  color: #fff;
 }
 </style>
 

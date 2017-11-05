@@ -17,6 +17,9 @@ export default {
     appHeader: Header,
     appNav: Nav,
   },
+  created() {
+    this.$store.dispatch('watchAuthState');
+  },
 };
 </script>
 
