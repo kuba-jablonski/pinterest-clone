@@ -34,6 +34,7 @@ export default {
     return {
       authProviders: {
         google: new firebase.auth.GoogleAuthProvider(),
+        github: new firebase.auth.GithubAuthProvider(),
       },
     };
   },
