@@ -26,16 +26,20 @@ export default {
         const credential = sessionStorage.getItem('credential');
         if (credential) {
           const validCredential = getValidCredential(JSON.parse(credential));
+          console.log(validCredential);
           firebase.auth().currentUser.linkWithCredential(validCredential)
             .then(() => {
               sessionStorage.removeItem('credential');
             })
-            .catch(() => {
+            .catch((e) => {
+              console.log('here!');
+              console.log(e);
               sessionStorage.removeItem('credential');
             });
         }
       })
       .catch((error) => {
+        console.log(error);
         if (error.code === 'auth/account-exists-with-different-credential') {
           sessionStorage.setItem('credential', JSON.stringify(error.credential));
           firebase

@@ -12,7 +12,7 @@
         <i class="fa fa-github fa-2x icon" aria-hidden="true"></i>
         Github
       </a>
-      <a class="nav-item">
+      <a @click="signInWithProvider('twitter.com')" class="nav-item">
         <i class="fa fa-twitter fa-2x icon" aria-hidden="true"></i>
         Twitter
       </a>
