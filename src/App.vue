@@ -10,6 +10,7 @@
 
 <script>
 import firebase from 'firebase';
+import { getProviderById, getValidCredential } from '@/firebaseHelpers';
 import Header from './components/Header';
 import Nav from './components/Nav';
 
@@ -20,39 +21,29 @@ export default {
   },
   created() {
     this.$store.dispatch('watchAuthState');
-    firebase
-      .auth()
-      .getRedirectResult()
+    firebase.auth().getRedirectResult()
       .then(() => {
-        console.log('Fetching credential');
         const credential = sessionStorage.getItem('credential');
-
         if (credential) {
-          console.log('Found credential, linking user...');
-          const { accessToken } = JSON.parse(credential);
-          const validCredential = firebase.auth.GithubAuthProvider.credential(accessToken);
+          const validCredential = getValidCredential(JSON.parse(credential));
           firebase.auth().currentUser.linkWithCredential(validCredential)
-            .then((user) => {
-              console.log(user);
-              console.log('Removing credential');
+            .then(() => {
+              sessionStorage.removeItem('credential');
             })
-            .catch(error => console.log(error));
-        } else {
-          console.log('No credential');
+            .catch(() => {
+              sessionStorage.removeItem('credential');
+            });
         }
       })
       .catch((error) => {
-        console.log(error);
         if (error.code === 'auth/account-exists-with-different-credential') {
-          console.log('Account exists with different credential.. Logging with Google');
           sessionStorage.setItem('credential', JSON.stringify(error.credential));
           firebase
             .auth()
             .fetchProvidersForEmail(error.email)
             .then((providers) => {
-              if (providers.includes('google.com')) {
-                firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-              }
+              const provider = getProviderById(providers[0]);
+              firebase.auth().signInWithRedirect(provider);
             });
         }
       });

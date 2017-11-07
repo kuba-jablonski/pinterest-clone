@@ -4,11 +4,11 @@
       <div class="nav-head">
         Login
       </div>
-      <a @click="signInWithProvider(authProviders.google)" class="nav-item">
+      <a @click="signInWithProvider('google.com')" class="nav-item">
         <i class="fa fa-google fa-2x icon" aria-hidden="true"></i>
         Google
       </a>
-      <a @click="signInWithProvider(authProviders.github)" class="nav-item">
+      <a @click="signInWithProvider('github.com')" class="nav-item">
         <i class="fa fa-github fa-2x icon" aria-hidden="true"></i>
         Github
       </a>
@@ -28,18 +28,12 @@
 
 <script>
 import firebase from 'firebase';
+import { getProviderById } from '@/firebaseHelpers';
 
 export default {
-  data() {
-    return {
-      authProviders: {
-        google: new firebase.auth.GoogleAuthProvider(),
-        github: new firebase.auth.GithubAuthProvider(),
-      },
-    };
-  },
   methods: {
-    signInWithProvider(provider) {
+    signInWithProvider(providerId) {
+      const provider = getProviderById(providerId);
       firebase.auth().signInWithRedirect(provider);
     },
     signOut() {
@@ -59,7 +53,7 @@ export default {
 
 
 <style lang="scss" scoped>
-@import 'src/assets/scss/_colors';
+@import "src/assets/scss/_colors";
 
 nav {
   position: relative;
