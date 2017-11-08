@@ -29,7 +29,7 @@ export default {
           firebase.auth().currentUser.linkWithCredential(validCredential)
             .then(() => {
               sessionStorage.removeItem('credential');
-            })
+            });
         }
       })
       .catch((error) => {
@@ -48,10 +48,12 @@ export default {
 
 <style lang="scss">
 @import "../node_modules/sanitize.scss/_sanitize";
-@import "src/assets/scss/_colors";
-@import "src/assets/scss/_typography";
 
 body {
+  color: $font-color;
+  font-family: $base-font;
+  line-height: 1.4;
+  font-size: 16px;
   padding: 0;
   margin: 0;
   background: $background-color;

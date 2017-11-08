@@ -53,8 +53,6 @@ export default {
 
 
 <style lang="scss" scoped>
-@import "src/assets/scss/_colors";
-
 nav {
   position: relative;
   width: 5rem;

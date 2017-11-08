@@ -19,8 +19,6 @@ export default {
 
 
 <style lang="scss" scoped>
-@import 'src/assets/scss/_colors';
-
 header {
   background: #fff;
   padding: 1rem 0;
