@@ -21,33 +21,44 @@ export default {
   },
   created() {
     this.$store.dispatch('watchAuthState');
-    firebase.auth().getRedirectResult()
-      .then(() => {
-        const credential = sessionStorage.getItem('credential');
-        if (credential) {
-          const validCredential = getValidCredential(JSON.parse(credential));
-          firebase.auth().currentUser.linkWithCredential(validCredential)
-            .then(() => {
-              sessionStorage.removeItem('credential');
-            });
-        }
-      })
-      .catch((error) => {
-        if (error.code === 'auth/account-exists-with-different-credential') {
-          sessionStorage.setItem('credential', JSON.stringify(error.credential));
-          firebase.auth().fetchProvidersForEmail(error.email)
-            .then((providers) => {
-              const provider = getProviderById(providers[0]);
-              firebase.auth().signInWithRedirect(provider);
-            });
-        }
-      });
+    this.onRedirectResult();
+  },
+  methods: {
+    onRedirectResult() {
+      firebase.auth().getRedirectResult()
+        .then(() => {
+          const credential = sessionStorage.getItem('credential');
+          if (credential) {
+            const validCredential = getValidCredential(JSON.parse(credential));
+            firebase.auth().currentUser.linkWithCredential(validCredential)
+              .then(() => {
+                sessionStorage.removeItem('credential');
+              });
+          }
+        })
+        .catch((error) => {
+          if (error.code === 'auth/account-exists-with-different-credential') {
+            sessionStorage.setItem('credential', JSON.stringify(error.credential));
+            firebase.auth().fetchProvidersForEmail(error.email)
+              .then((providers) => {
+                const provider = getProviderById(providers[0]);
+                firebase.auth().signInWithRedirect(provider);
+              });
+          }
+        });
+    },
   },
 };
 </script>
 
 <style lang="scss">
 @import "../node_modules/sanitize.scss/_sanitize";
+
+html,
+body,
+.app {
+  height: 100%;
+}
 
 body {
   color: $font-color;
@@ -58,13 +69,9 @@ body {
   margin: 0;
   background: $background-color;
 }
+</style>
 
-html,
-body,
-.app {
-  height: 100%;
-}
-
+<style lang="scss" scoped>
 .app {
   display: flex;
   flex-direction: column;
