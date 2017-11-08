@@ -18,6 +18,18 @@
       </a>
     </template>
     <template v-if="authenticated">
+      <a class="nav-item">
+        <i class="fa fa-users fa-2x icon" aria-hidden="true"></i>
+        Pins
+      </a>
+      <a class="nav-item">
+        <i class="fa fa-user fa-2x icon" aria-hidden="true"></i>
+        My Pins
+      </a>
+      <a class="nav-item">
+        <i class="fa fa-plus fa-2x icon" aria-hidden="true"></i>
+        Add Pin
+      </a>
       <a @click="signOut" class="nav-item">
         <i class="fa fa-sign-out fa-2x icon" aria-hidden="true"></i>
         Signout
@@ -28,6 +40,7 @@
 
 <script>
 import firebase from 'firebase';
+import { mapGetters } from 'vuex';
 import { getProviderById } from '@/firebaseHelpers';
 
 export default {
@@ -41,12 +54,10 @@ export default {
     },
   },
   computed: {
-    navbar() {
-      return this.$store.getters.navbar;
-    },
-    authenticated() {
-      return this.$store.getters.authenticated;
-    },
+    ...mapGetters([
+      'navbar',
+      'authenticated',
+    ]),
   },
 };
 </script>
@@ -83,6 +94,7 @@ nav {
   font-size: 13px;
   width: 100%;
   margin: 1rem 0;
+  transition: color 0.3s ease;
   .icon {
     display: block;
   }
