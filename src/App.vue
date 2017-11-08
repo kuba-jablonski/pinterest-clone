@@ -3,7 +3,9 @@
     <app-header/>
     <div class="display">
       <app-nav/>
-      <router-view/>
+      <main>
+        <router-view/>
+      </main>
     </div>
   </div>
 </template>
@@ -79,6 +81,10 @@ body {
 
 .display {
   display: flex;
+  flex-grow: 1;
+}
+
+main {
   flex-grow: 1;
 }
 </style>

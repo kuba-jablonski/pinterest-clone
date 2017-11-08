@@ -18,21 +18,21 @@
           Twitter
         </a>
       </template>
-      <template v-if="authenticated ">
-        <a class="nav-item ">
+      <template v-if="authenticated">
+        <a class="nav-item">
           <i class="fa fa-users fa-2x icon" aria-hidden="true"></i>
           Pins
         </a>
-        <a class="nav-item ">
+        <a class="nav-item">
           <i class="fa fa-user fa-2x icon" aria-hidden="true"></i>
           My Pins
         </a>
-        <a class="nav-item ">
+        <router-link to="/pin/new" tag="a" active-class="active" exact class="nav-item">
           <i class="fa fa-plus fa-2x icon" aria-hidden="true"></i>
           Add Pin
-        </a>
-        <a @click="signOut " class="nav-item ">
-          <i class="fa fa-sign-out fa-2x icon " aria-hidden="true "></i>
+        </router-link>
+        <a @click="signOut" class="nav-item">
+          <i class="fa fa-sign-out fa-2x icon" aria-hidden="true"></i>
           Signout
         </a>
       </template>
@@ -89,6 +89,7 @@ nav {
   cursor: pointer;
   color: #c9c9c9;
   text-transform: uppercase;
+  text-decoration: none;
   text-align: center;
   font-weight: 500;
   font-size: 13px;
