@@ -1,41 +1,43 @@
 <template>
-  <nav :class="{ hidden: !navbar }">
-    <template v-if="authenticated === false">
-      <div class="nav-head">
-        Login
-      </div>
-      <a @click="signInWithProvider('google.com')" class="nav-item">
-        <i class="fa fa-google fa-2x icon" aria-hidden="true"></i>
-        Google
-      </a>
-      <a @click="signInWithProvider('github.com')" class="nav-item">
-        <i class="fa fa-github fa-2x icon" aria-hidden="true"></i>
-        Github
-      </a>
-      <a @click="signInWithProvider('twitter.com')" class="nav-item">
-        <i class="fa fa-twitter fa-2x icon" aria-hidden="true"></i>
-        Twitter
-      </a>
-    </template>
-    <template v-if="authenticated">
-      <a class="nav-item">
-        <i class="fa fa-users fa-2x icon" aria-hidden="true"></i>
-        Pins
-      </a>
-      <a class="nav-item">
-        <i class="fa fa-user fa-2x icon" aria-hidden="true"></i>
-        My Pins
-      </a>
-      <a class="nav-item">
-        <i class="fa fa-plus fa-2x icon" aria-hidden="true"></i>
-        Add Pin
-      </a>
-      <a @click="signOut" class="nav-item">
-        <i class="fa fa-sign-out fa-2x icon" aria-hidden="true"></i>
-        Signout
-      </a>
-    </template>
-  </nav>
+  <transition name="slide">
+    <nav v-show="navbar">
+      <template v-if="authenticated === false">
+        <div class="nav-head ">
+          Login
+        </div>
+        <a @click="signInWithProvider('google.com')" class="nav-item">
+          <i class="fa fa-google fa-2x icon " aria-hidden="true "></i>
+          Google
+        </a>
+        <a @click="signInWithProvider('github.com')" class="nav-item">
+          <i class="fa fa-github fa-2x icon " aria-hidden="true "></i>
+          Github
+        </a>
+        <a @click="signInWithProvider('twitter.com')" class="nav-item">
+          <i class="fa fa-twitter fa-2x icon " aria-hidden="true "></i>
+          Twitter
+        </a>
+      </template>
+      <template v-if="authenticated ">
+        <a class="nav-item ">
+          <i class="fa fa-users fa-2x icon" aria-hidden="true"></i>
+          Pins
+        </a>
+        <a class="nav-item ">
+          <i class="fa fa-user fa-2x icon" aria-hidden="true"></i>
+          My Pins
+        </a>
+        <a class="nav-item ">
+          <i class="fa fa-plus fa-2x icon" aria-hidden="true"></i>
+          Add Pin
+        </a>
+        <a @click="signOut " class="nav-item ">
+          <i class="fa fa-sign-out fa-2x icon " aria-hidden="true "></i>
+          Signout
+        </a>
+      </template>
+    </nav>
+  </transition>
 </template>
 
 <script>
@@ -69,8 +71,6 @@ nav {
   width: 5rem;
   min-height: 100%;
   background: $navbar-color;
-  transform: translateX(0);
-  transition: transform 0.3s ease;
 }
 
 .nav-head {
@@ -103,12 +103,17 @@ nav {
   }
 }
 
-.hidden {
-  transform: translateX(-6rem);
-}
-
 .active {
   color: #fff;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.5s;
+}
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(-6rem);
 }
 </style>
 

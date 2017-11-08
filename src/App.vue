@@ -3,7 +3,7 @@
     <app-header/>
     <div class="display">
       <app-nav/>
-      <main></main>
+      <router-view/>
     </div>
   </div>
 </template>
