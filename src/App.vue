@@ -28,25 +28,40 @@ export default {
   methods: {
     onRedirectResult() {
       firebase.auth().getRedirectResult()
-        .then(() => {
-          const credential = sessionStorage.getItem('credential');
-          if (credential) {
-            const validCredential = getValidCredential(JSON.parse(credential));
-            firebase.auth().currentUser.linkWithCredential(validCredential)
-              .then(() => {
-                sessionStorage.removeItem('credential');
-              });
-          }
+        .then((result) => {
+          this.addUserToDatabase(result.user);
+          this.linkUserAccounts();
         })
         .catch((error) => {
           if (error.code === 'auth/account-exists-with-different-credential') {
-            sessionStorage.setItem('credential', JSON.stringify(error.credential));
-            firebase.auth().fetchProvidersForEmail(error.email)
-              .then((providers) => {
-                const provider = getProviderById(providers[0]);
-                firebase.auth().signInWithRedirect(provider);
-              });
+            this.handleCredentialError(error);
           }
+        });
+    },
+    addUserToDatabase({ uid, displayName }) {
+      const usersRef = firebase.database().ref('users');
+      usersRef.once('value', (snap) => {
+        if (!snap.hasChild(uid)) {
+          usersRef.child(uid).set({ uid, displayName });
+        }
+      });
+    },
+    linkUserAccounts() {
+      const credential = sessionStorage.getItem('credential');
+      if (credential) {
+        const validCredential = getValidCredential(JSON.parse(credential));
+        firebase.auth().currentUser.linkWithCredential(validCredential)
+          .then(() => {
+            sessionStorage.removeItem('credential');
+          });
+      }
+    },
+    handleCredentialError({ email, credential }) {
+      sessionStorage.setItem('credential', JSON.stringify(credential));
+      firebase.auth().fetchProvidersForEmail(email)
+        .then((providers) => {
+          const provider = getProviderById(providers[0]);
+          firebase.auth().signInWithRedirect(provider);
         });
     },
   },
