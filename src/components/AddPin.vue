@@ -1,18 +1,10 @@
 <template>
-  <div class="container">
-    <h2>Add a New Pin</h2>
-    <form @submit.prevent="savePin">
-      <div class="inline-input">
-        <label for="link">Link</label>
-        <input v-model="imageUrl" type="text" name="link">
-      </div>
-      <div class="inline-input">
-        <label for="title">Title</label>
-        <input v-model="imageTitle" type="text" name="title">
-      </div>
-      <button>Submit</button>
-    </form>
-  </div>
+  <form @submit.prevent="savePin">
+    <h2 class="form-title"> Add a New Pin</h2>
+    <input v-model="imageUrl" type="text" name="link" placeholder="Image Link">
+    <input v-model="imageTitle" type="text" name="title" placeholder="Image Title">
+    <button>Submit</button>
+  </form>
 </template>
 
 <script>
@@ -45,18 +37,31 @@ export default {
 
 
 <style lang="scss" scoped>
-.container {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
+form {
+  background: #fff;
+  width: 80%;
+  max-width: 600px;
+  padding: 1rem;
+  margin: 1rem auto;
+  .form-title {
+    margin: 0;
+    text-align: center;
+    font-size: 20px;
+  }
 }
 
 input {
   background: #fff;
-  border: 1px solid $navbar-color;
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
 }
 
 button {
-  border: 1px solid $navbar-color;
+  color: #fff;
+  background: green;
+  padding: 5px 10px;
 }
 </style>
