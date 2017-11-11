@@ -19,10 +19,10 @@
         </a>
       </template>
       <template v-if="authenticated">
-        <a class="nav-item">
+        <router-link to="/" tag="a" active-class="active" exact class="nav-item">
           <i class="fa fa-users fa-2x icon" aria-hidden="true"></i>
           Pins
-        </a>
+        </router-link>
         <a class="nav-item">
           <i class="fa fa-user fa-2x icon" aria-hidden="true"></i>
           My Pins

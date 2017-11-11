@@ -9,6 +9,7 @@ export default new Vuex.Store({
     authenticated: null,
     uid: null,
     navbar: true,
+    pins: [],
   },
   mutations: {
     TOGGLE_NAV: (state) => {
@@ -19,6 +20,9 @@ export default new Vuex.Store({
     },
     SET_USER_ID: (state, uid) => {
       state.uid = uid;
+    },
+    SAVE_PINS: (state, pins) => {
+      state.pins = pins;
     },
   },
   actions: {
@@ -33,10 +37,16 @@ export default new Vuex.Store({
         }
       });
     },
+    fetchPins: ({ commit }) => {
+      firebase.database().ref('pins').once('value', (snap) => {
+        commit('SAVE_PINS', snap.val());
+      });
+    },
   },
   getters: {
     navbar: state => state.navbar,
     authenticated: state => state.authenticated,
     userId: state => state.uid,
+    pins: state => state.pins,
   },
 });
