@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="card">
     <img :src="pin.imageUrl" alt="An Image">
+    <h2 class="title">{{ pin.imageTitle }}</h2>
   </div>
 </template>
 
@@ -11,7 +12,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img {
-  width: 200px;
+.card {
+  background: #fff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 100%;
+  }
+  .title {
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+  }
 }
 </style>

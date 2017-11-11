@@ -101,5 +101,6 @@ body {
 
 main {
   flex-grow: 1;
+  padding: 1rem;
 }
 </style>
