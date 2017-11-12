@@ -23,6 +23,9 @@ export default {
   @media (min-width: 900px) {
     width: 33.3333%;
   }
+  @media (min-width: 1300px) {
+    width: 25%;
+  }
 }
 
 .pin {

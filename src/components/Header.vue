@@ -23,6 +23,7 @@ header {
   background: #fff;
   padding: 1rem 0;
   border-top: 5px solid $navbar-color;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .menu {
