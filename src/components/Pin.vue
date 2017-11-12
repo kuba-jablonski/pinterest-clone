@@ -1,7 +1,9 @@
 <template>
-  <div class="card">
-    <img :src="pin.imageUrl" alt="An Image">
-    <h2 class="title">{{ pin.imageTitle }}</h2>
+  <div class="item">
+    <div v-masonry-tile class="pin">
+      <img :src="pin.imageUrl" alt="An Image">
+      <h2 class="title">{{ pin.imageTitle }}</h2>
+    </div>
   </div>
 </template>
 
@@ -12,19 +14,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card {
+.item {
+  width: 100%;
+  padding: 5px;
+  @media (min-width: 550px) {
+    width: 50%;
+  }
+  @media (min-width: 900px) {
+    width: 33.3333%;
+  }
+}
+
+.pin {
   background: #fff;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   img {
     width: 100%;
   }
   .title {
-    font-size: 18px;
     font-weight: 500;
+    font-size: 18px;
     text-align: center;
+    width: 100%;
+    margin: 0;
+    background: #ef9a9a;
+    padding: 5px;
   }
 }
 </style>

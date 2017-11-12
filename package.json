@@ -14,6 +14,7 @@
     "firebase": "^4.6.1",
     "sanitize.scss": "^1.0.0",
     "vue": "^2.5.2",
+    "vue-masonry": "^0.10.12",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },

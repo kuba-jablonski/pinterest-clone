@@ -1,6 +1,6 @@
 <template>
-  <div class="grid">
-    <app-pin v-for="pin in pins" :key="pin.imageTitle" :pin="pin" />
+  <div class="grid" v-masonry transition-duration="0.3s" item-selector=".item">
+    <app-pin v-for="pin in pins" :key="pin.title" :pin="pin" />
   </div>
 </template>
 
@@ -24,13 +24,7 @@ export default {
 
 <style lang="scss" scoped>
 .grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 0.5rem;
-  justify-items: center;
-  grid-auto-flow: dense;
-  @media (min-width: 500px) {
-    grid-template-columns: 1fr 1fr;
-  }
+  margin: 0 auto;
+  width: 100%;
 }
 </style>

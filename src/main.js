@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import firebase from 'firebase';
+import { VueMasonryPlugin } from 'vue-masonry';
 import App from './App';
 import router from './router';
 import store from './store';
 
+Vue.use(VueMasonryPlugin);
 Vue.config.productionTip = false;
 
 firebase.initializeApp({
