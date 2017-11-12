@@ -35,12 +35,13 @@ export default {
     width: 100%;
   }
   .title {
-    font-weight: 500;
-    font-size: 18px;
+    font-weight: 400;
+    font-size: 16px;
     text-align: center;
     width: 100%;
     margin: 0;
-    background: #ef9a9a;
+    background: $navbar-color;
+    color: #fff;
     padding: 5px;
   }
 }
