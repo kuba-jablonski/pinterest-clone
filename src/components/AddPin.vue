@@ -8,8 +8,6 @@
 </template>
 
 <script>
-import firebase from 'firebase';
-
 export default {
   data() {
     return {
@@ -20,8 +18,7 @@ export default {
   methods: {
     savePin() {
       if (this.verifyUrl(this.imageUrl) && (this.imageTitle.trim() !== '')) {
-        const newPinRef = firebase.database().ref('pins').push();
-        newPinRef.set({
+        this.$store.dispatch('savePin', {
           imageUrl: this.imageUrl,
           imageTitle: this.imageTitle,
           author: this.$store.getters.userId,
