@@ -50,10 +50,16 @@ export default {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   img {
     width: 100%;
-    transition: filter 0.3s ease;
   }
+}
+
+.pin-info {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .title {
-    position: relative;
     font-weight: 400;
     font-size: 16px;
     text-align: center;
@@ -74,15 +80,5 @@ export default {
       padding: 5px;
     }
   }
-  &:hover img {
-    filter: grayscale(100%);
-  }
-}
-
-.actions {
-  position: absolute;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
 }
 </style>
