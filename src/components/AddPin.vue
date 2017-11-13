@@ -21,7 +21,6 @@ export default {
         this.$store.dispatch('savePin', {
           imageUrl: this.imageUrl,
           imageTitle: this.imageTitle,
-          author: this.$store.getters.userId,
         });
       }
     },
