@@ -38,14 +38,14 @@ export default {
 <style lang="scss" scoped>
 .item {
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   @media (min-width: 550px) {
     width: 50%;
   }
   @media (min-width: 900px) {
     width: 33.3333%;
   }
-  @media (min-width: 1300px) {
+  @media (min-width: 1330px) {
     width: 25%;
   }
 }
@@ -63,7 +63,6 @@ export default {
 
 .pin-info {
   width: 100%;
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
