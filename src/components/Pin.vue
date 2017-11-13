@@ -43,7 +43,7 @@ export default {
     text-align: center;
     width: 100%;
     margin: 0;
-    background: $navbar-color;
+    background: $secondary;
     color: #fff;
     padding: 5px;
   }

@@ -70,12 +70,12 @@ nav {
   position: relative;
   width: 5rem;
   min-height: 100%;
-  background: $navbar-color;
+  background: $primary;
 }
 
 .nav-head {
   color: #fff;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   width: 90%;
   border-bottom: 1px solid #fff;
@@ -87,14 +87,15 @@ nav {
 .nav-item {
   display: block;
   cursor: pointer;
-  color: #c9c9c9;
+  color: #ede7f6;
   text-transform: uppercase;
   text-decoration: none;
   text-align: center;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 13px;
   width: 100%;
   margin: 1rem 0;
+  padding-top: 5px;
   transition: color 0.3s ease;
   .icon {
     display: block;
