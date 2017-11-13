@@ -1,5 +1,5 @@
 <template>
-  <transition name="slide">
+  <transition name="slide" @after-leave="$redrawVueMasonry" @after-enter="$redrawVueMasonry">
     <nav v-show="navbar">
       <template v-if="authenticated === false">
         <div class="nav-head ">
