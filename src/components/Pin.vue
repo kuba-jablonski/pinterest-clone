@@ -11,9 +11,12 @@
             <i class="fa fa-clock-o" aria-hidden="true"></i>
             6 min ago
           </div>
-          <div class=" details likes">
+          <div class="details likes">
             <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
             6 likes
+          </div>
+          <div @click="addLike" class="like-btn">
+            <button>Like</button>
           </div>
         </div>
       </div>
@@ -24,6 +27,11 @@
 <script>
 export default {
   props: ['pin'],
+  methods: {
+    addLike() {
+      // todo
+    },
+  },
 };
 </script>
 
@@ -72,12 +80,23 @@ export default {
     display: flex;
     width: 90%;
     text-align: center;
-    padding: 5px 15px 5px 0;
+    padding: 5px 0;
     font-size: 13px;
     color: #7e7e7e;
     font-weight: 600;
     .details {
       padding: 5px;
+    }
+    .like-btn {
+      flex-grow: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      button {
+        background: $secondary;
+        color: #fff;
+        padding: 5px 20px;
+      }
     }
   }
 }
