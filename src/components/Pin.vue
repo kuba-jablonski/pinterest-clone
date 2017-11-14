@@ -6,17 +6,14 @@
         <h2 class="title">
           {{ pin.imageTitle }}
         </h2>
-        <div class="bottom">
-          <div class="details created">
+        <div class="details">
+          <div class="created">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            6 min ago
+            {{ pin.createdAt | displayTimeSince }}
           </div>
-          <div class="details likes">
+          <div class="likes">
             <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-            6 likes
-          </div>
-          <div @click="addLike" class="like-btn">
-            <button>Like</button>
+            {{ pin.likes }} likes
           </div>
         </div>
       </div>
@@ -25,11 +22,18 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   props: ['pin'],
   methods: {
     addLike() {
       // todo
+    },
+  },
+  filters: {
+    displayTimeSince(date) {
+      return moment(date).from(moment());
     },
   },
 };
@@ -73,9 +77,10 @@ export default {
     width: 90%;
     margin: 0;
     border-bottom: 2px solid $secondary;
-    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 5px;
   }
-  .bottom {
+  .details {
     display: flex;
     width: 90%;
     text-align: center;
@@ -83,19 +88,9 @@ export default {
     font-size: 13px;
     color: #7e7e7e;
     font-weight: 600;
-    .details {
-      padding: 5px;
-    }
-    .like-btn {
-      flex-grow: 1;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      button {
-        background: $secondary;
-        color: #fff;
-        padding: 5px 20px;
-      }
+    .created,
+    .likes {
+      padding: 5px 10px 5px 5px;
     }
   }
 }
