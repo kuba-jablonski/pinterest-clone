@@ -86,7 +86,7 @@ export default {
     text-align: center;
     padding: 5px 0;
     font-size: 13px;
-    color: #7e7e7e;
+    color: #7c7c7c;
     font-weight: 600;
     .created,
     .likes {
