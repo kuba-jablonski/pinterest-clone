@@ -1,6 +1,6 @@
 <template>
   <div class="grid" v-masonry transition-duration="1s" item-selector=".item">
-    <app-pin v-for="pin in pins" :key="pin.title" :pin="pin" />
+    <app-pin v-for="pin in pins" :key="pin.id" :pin="pin" />
   </div>
 </template>
 

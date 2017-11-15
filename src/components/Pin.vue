@@ -37,7 +37,6 @@ export default {
     const img = new Image();
     img.onload = () => {
       this.imageSrc = this.pin.imageUrl;
-      this.$redrawVueMasonry();
     };
 
     img.src = this.pin.imageUrl;
