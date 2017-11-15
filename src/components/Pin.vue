@@ -1,7 +1,7 @@
 <template>
-  <div class="item">
-    <div v-masonry-tile class="pin">
-      <img :src="pin.imageUrl" alt="An Image">
+  <div v-masonry-tile v-if="imageSrc" class="item">
+    <div class="pin">
+      <img :src="imageSrc" alt="An Image">
       <div class="pin-info">
         <h2 class="title">
           {{ pin.imageTitle }}
@@ -26,6 +26,20 @@ import moment from 'moment';
 
 export default {
   props: ['pin'],
+  data() {
+    return {
+      imageSrc: null,
+    };
+  },
+  mounted() {
+    const img = new Image();
+    img.onload = () => {
+      this.imageSrc = this.pin.imageUrl;
+      this.$redrawVueMasonry();
+    };
+
+    img.src = this.pin.imageUrl;
+  },
   methods: {
     addLike() {
       // todo
