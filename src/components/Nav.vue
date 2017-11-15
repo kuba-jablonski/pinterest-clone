@@ -1,41 +1,43 @@
 <template>
   <transition name="slide" @after-leave="$redrawVueMasonry" @after-enter="$redrawVueMasonry">
     <nav v-show="navbar">
-      <template v-if="authenticated === false">
-        <div class="nav-head ">
-          Login
+      <transition name="fade" mode="out-in">
+        <div v-if="authenticated === false">
+          <div class="nav-head ">
+            Login
+          </div>
+          <a @click="signInWithProvider('google.com')" class="nav-item">
+            <i class="fa fa-google fa-2x icon " aria-hidden="true "></i>
+            Google
+          </a>
+          <a @click="signInWithProvider('github.com')" class="nav-item">
+            <i class="fa fa-github fa-2x icon " aria-hidden="true "></i>
+            Github
+          </a>
+          <a @click="signInWithProvider('twitter.com')" class="nav-item">
+            <i class="fa fa-twitter fa-2x icon " aria-hidden="true "></i>
+            Twitter
+          </a>
         </div>
-        <a @click="signInWithProvider('google.com')" class="nav-item">
-          <i class="fa fa-google fa-2x icon " aria-hidden="true "></i>
-          Google
-        </a>
-        <a @click="signInWithProvider('github.com')" class="nav-item">
-          <i class="fa fa-github fa-2x icon " aria-hidden="true "></i>
-          Github
-        </a>
-        <a @click="signInWithProvider('twitter.com')" class="nav-item">
-          <i class="fa fa-twitter fa-2x icon " aria-hidden="true "></i>
-          Twitter
-        </a>
-      </template>
-      <template v-if="authenticated">
-        <router-link to="/" tag="a" active-class="active" exact class="nav-item">
-          <i class="fa fa-users fa-2x icon" aria-hidden="true"></i>
-          Pins
-        </router-link>
-        <a class="nav-item">
-          <i class="fa fa-user fa-2x icon" aria-hidden="true"></i>
-          My Pins
-        </a>
-        <router-link to="/pin/new" tag="a" active-class="active" exact class="nav-item">
-          <i class="fa fa-plus fa-2x icon" aria-hidden="true"></i>
-          Add Pin
-        </router-link>
-        <a @click="signOut" class="nav-item">
-          <i class="fa fa-sign-out fa-2x icon" aria-hidden="true"></i>
-          Signout
-        </a>
-      </template>
+        <div v-if="authenticated">
+          <router-link to="/" tag="a" active-class="active" exact class="nav-item">
+            <i class="fa fa-users fa-2x icon" aria-hidden="true"></i>
+            Pins
+          </router-link>
+          <a class="nav-item">
+            <i class="fa fa-user fa-2x icon" aria-hidden="true"></i>
+            My Pins
+          </a>
+          <router-link to="/pin/new" tag="a" active-class="active" exact class="nav-item">
+            <i class="fa fa-plus fa-2x icon" aria-hidden="true"></i>
+            Add Pin
+          </router-link>
+          <a @click="signOut" class="nav-item">
+            <i class="fa fa-sign-out fa-2x icon" aria-hidden="true"></i>
+            Signout
+          </a>
+        </div>
+      </transition>
     </nav>
   </transition>
 </template>
@@ -116,6 +118,15 @@ nav {
 .slide-enter,
 .slide-leave-to {
   transform: translateX(-6rem);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
 
