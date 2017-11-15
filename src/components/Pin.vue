@@ -1,24 +1,26 @@
 <template>
-  <div v-masonry-tile v-if="imageSrc" class="item">
-    <div class="pin">
-      <img :src="imageSrc" alt="An Image">
-      <div class="pin-info">
-        <h2 class="title">
-          {{ pin.imageTitle }}
-        </h2>
-        <div class="details">
-          <div class="created">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            {{ pin.createdAt | displayTimeSince }}
-          </div>
-          <div class="likes">
-            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-            {{ pin.likes }} likes
+  <transition name="fade">
+    <div v-masonry-tile v-if="imageSrc" class="item">
+      <div class="pin">
+        <img :src="imageSrc" alt="An Image">
+        <div class="pin-info">
+          <h2 class="title">
+            {{ pin.imageTitle }}
+          </h2>
+          <div class="details">
+            <div class="created">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              {{ pin.createdAt | displayTimeSince }}
+            </div>
+            <div class="likes">
+              <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+              {{ pin.likes }} likes
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -57,6 +59,7 @@ export default {
 .item {
   width: 100%;
   padding: 10px;
+  transition: opacity 2s;
   @media (min-width: 550px) {
     width: 50%;
   }
@@ -107,5 +110,14 @@ export default {
       padding: 5px 10px 5px 5px;
     }
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 2s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="grid" v-masonry transition-duration="0.3s" item-selector=".item">
+  <div class="grid" v-masonry transition-duration="1s" item-selector=".item">
     <app-pin v-for="pin in pins" :key="pin.title" :pin="pin" />
   </div>
 </template>
