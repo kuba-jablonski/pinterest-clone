@@ -2,7 +2,20 @@
   <transition name="fade">
     <div v-masonry-tile v-if="imageSrc" class="item">
       <div class="pin">
-        <img :src="imageSrc" alt="An Image">
+        <div class="image-wrapper">
+          <img :src="imageSrc" alt="An Image">
+          <div class="actions-buttons">
+            <button class="delete-btn">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+            <button  class="fav-btn">
+              <i class="fa fa-star-o" aria-hidden="true"></i>
+            </button>
+            <button class="like-btn">
+              <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
         <div class="pin-info">
           <h2 class="title">
             {{ pin.imageTitle }}
@@ -76,8 +89,38 @@ export default {
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
   img {
     width: 100%;
+  }
+  .actions-buttons {
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    button {
+      width: 50px;
+      height: 50px;
+      font-size: 18px;
+      margin-right: 1rem;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, 0.3);
+      &.delete-btn {
+        background: #ff8a80;
+      }
+      &.fav-btn {
+        background: #f4ff81;
+      }
+      &.like-btn {
+        background: #ccff90;
+      }
+    }
   }
 }
 
