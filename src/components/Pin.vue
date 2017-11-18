@@ -8,9 +8,9 @@
             <button @click="deletePin" class="delete-btn">
               <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
-            <button  class="fav-btn">
+            <!-- <button  class="fav-btn">
               <i class="fa fa-star-o" aria-hidden="true"></i>
-            </button>
+            </button> -->
             <button @click="addLike" class="like-btn">
               <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
             </button>
@@ -96,15 +96,26 @@ export default {
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  &:hover {
+    img {
+      filter: grayscale(60%);
+    }
+    .actions-buttons {
+      opacity: 100;
+    }
+  }
 }
 
 .image-wrapper {
   position: relative;
   width: 100%;
   img {
+    transition: filter 0.5s;
     width: 100%;
   }
   .actions-buttons {
+    opacity: 0;
+    transition: opacity 0.5s;
     position: absolute;
     bottom: 1rem;
     width: 100%;
@@ -117,7 +128,7 @@ export default {
       margin-right: 1rem;
       border-radius: 50%;
       cursor: pointer;
-      box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, 0.3);
+      box-shadow: 2px 4px 5px 0px rgba(41, 41, 41, 0.3);
       &.delete-btn {
         background: #ff8a80;
       }
