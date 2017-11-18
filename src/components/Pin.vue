@@ -11,7 +11,7 @@
             <button  class="fav-btn">
               <i class="fa fa-star-o" aria-hidden="true"></i>
             </button>
-            <button class="like-btn">
+            <button @click="addLike" class="like-btn">
               <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
             </button>
           </div>
@@ -157,9 +157,11 @@ export default {
   }
 }
 
-.fade-enter-active,
-.fade-leave-active {
+.fade-enter-active {
   transition: opacity 2s;
+}
+.fade-leave-active {
+  transition: opacity 1s;
 }
 .fade-enter,
 .fade-leave-to {
