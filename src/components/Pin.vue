@@ -27,7 +27,7 @@
             </div>
             <div class="likes">
               <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-              {{ pin.likes }} likes
+              {{ pin.likesCount }} likes
             </div>
           </div>
         </div>
@@ -44,6 +44,7 @@ export default {
   data() {
     return {
       imageSrc: null,
+      likeAdded: false,
     };
   },
   mounted() {
@@ -59,7 +60,10 @@ export default {
       this.$store.dispatch('deletePin', this.pin.id);
     },
     addLike() {
-      // todo
+      if (!this.likeAdded) {
+        this.likeAdded = true;
+        this.$store.dispatch('addLike', this.pin.id);
+      }
     },
   },
   filters: {

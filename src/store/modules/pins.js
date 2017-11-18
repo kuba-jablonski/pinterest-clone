@@ -12,6 +12,9 @@ export default {
     DELETE_PIN: (state, id) => {
       state.pins = _.omit(state.pins, id);
     },
+    ADD_LIKE: (state, id) => {
+      state.pins[id].likesCount += 1;
+    },
   },
   actions: {
     fetchPins: ({ commit }) => {
@@ -29,13 +32,31 @@ export default {
           displayName: firebase.auth().currentUser.displayName,
         },
         createdAt: Date.now(),
-        likes: 0,
+        likesCount: 0,
       }));
     },
     deletePin: ({ commit }, id) => {
       const pin = firebase.database().ref('pins').child(id);
       pin.remove();
       commit('DELETE_PIN', id);
+    },
+    addLike: ({ commit }, id) => {
+      /* eslint-disable no-param-reassign */
+      const pinRef = firebase.database().ref('pins').child(id);
+      const uid = firebase.auth().currentUser.uid;
+      pinRef.transaction((pin) => {
+        if (pin) {
+          if (!pin.likes) {
+            pin.likes = {};
+          }
+          if (!pin.likes[uid]) {
+            pin.likesCount += 1;
+            pin.likes[uid] = true;
+            commit('ADD_LIKE', id);
+          }
+        }
+        return pin;
+      });
     },
   },
   getters: {
