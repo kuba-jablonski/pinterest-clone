@@ -1,11 +1,11 @@
 <template>
-  <transition name="fade">
+  <transition name="fade" @after-leave="$redrawVueMasonry">
     <div v-masonry-tile v-if="imageSrc" class="item">
       <div class="pin">
         <div class="image-wrapper">
           <img :src="imageSrc" alt="An Image">
           <div class="actions-buttons">
-            <button class="delete-btn">
+            <button @click="deletePin" class="delete-btn">
               <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
             <button  class="fav-btn">
@@ -55,6 +55,9 @@ export default {
     img.src = this.pin.imageUrl;
   },
   methods: {
+    deletePin() {
+      this.$store.dispatch('deletePin', this.pin.id);
+    },
     addLike() {
       // todo
     },

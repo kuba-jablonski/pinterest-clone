@@ -9,6 +9,9 @@ export default {
     CREATE_PINS_LIST: (state, pins) => {
       state.pins = pins;
     },
+    DELETE_PIN: (state, id) => {
+      state.pins = _.omit(state.pins, id);
+    },
   },
   actions: {
     fetchPins: ({ commit }) => {
@@ -28,6 +31,11 @@ export default {
         createdAt: Date.now(),
         likes: 0,
       }));
+    },
+    deletePin: ({ commit }, id) => {
+      const pin = firebase.database().ref('pins').child(id);
+      pin.remove();
+      commit('DELETE_PIN', id);
     },
   },
   getters: {
