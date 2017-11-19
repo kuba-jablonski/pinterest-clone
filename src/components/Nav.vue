@@ -69,7 +69,7 @@ export default {
 
 <style lang="scss" scoped>
 nav {
-  position: relative;
+  position: fixed;
   width: 5rem;
   min-height: 100%;
   background: $primary;

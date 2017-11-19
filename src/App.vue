@@ -1,12 +1,12 @@
 <template>
   <div class="app">
     <app-header/>
-    <div class="display">
+    <!-- <div class="display"> -->
       <app-nav/>
-      <main>
+      <main :style="mainWidth">
         <router-view/>
       </main>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -20,6 +20,16 @@ export default {
   components: {
     appHeader: Header,
     appNav: Nav,
+  },
+  computed: {
+    navbar() {
+      return this.$store.getters.navbar;
+    },
+    mainWidth() {
+      return this.navbar
+        ? { width: 'calc(100% - 5rem)', left: '5rem' }
+        : { width: '100%', left: 0 };
+    },
   },
   created() {
     this.$store.dispatch('watchAuthState');
@@ -110,7 +120,9 @@ body {
 }
 
 main {
-  flex-grow: 1;
+  position: absolute;
+  transition: all 0.3s;
+  top: 73px;
   padding: 0.5rem;
 }
 </style>
