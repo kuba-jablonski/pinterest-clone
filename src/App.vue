@@ -1,12 +1,10 @@
 <template>
   <div class="app">
     <app-header/>
-    <!-- <div class="display"> -->
-      <app-nav/>
-      <main :style="mainWidth">
-        <router-view/>
-      </main>
-    <!-- </div> -->
+    <app-nav/>
+    <main :style="mainWidth">
+      <router-view/>
+    </main>
   </div>
 </template>
 

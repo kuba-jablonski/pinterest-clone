@@ -63,7 +63,6 @@ input {
   background: #fff;
   display: block;
   width: 100%;
-  // margin-bottom: 0.5rem;
   padding: 5px 10px;
   border: 1px solid #ccc;
 }
