@@ -92,6 +92,10 @@ body {
   margin: 0;
   background: $background-color;
 }
+
+*:focus {
+  outline: none;
+}
 </style>
 
 <style lang="scss" scoped>
