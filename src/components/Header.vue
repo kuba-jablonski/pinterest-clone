@@ -20,6 +20,9 @@ export default {
 
 <style lang="scss" scoped>
 header {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
   background: #fff;
   padding: 1rem 0;
   border-top: 5px solid $primary;
