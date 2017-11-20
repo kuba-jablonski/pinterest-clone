@@ -3,7 +3,9 @@
     <app-header/>
     <app-nav/>
     <main :style="mainWidth">
-      <component :is="mainComponent"></component>
+      <transition name="fade" mode="out-in">
+        <component :is="mainComponent"></component>
+      </transition>
     </main>
   </div>
 </template>
@@ -128,5 +130,14 @@ main {
   transition: all 0.3s;
   top: 73px;
   padding: 0.5rem;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
