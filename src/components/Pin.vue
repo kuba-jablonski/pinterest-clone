@@ -5,7 +5,7 @@
         <div class="image-wrapper">
           <img :src="imageSrc" alt="An Image">
           <div class="actions-buttons">
-            <button @click="deletePin" class="delete-btn">
+            <button v-if="userId === pin.author.uid" @click="deletePin" class="delete-btn">
               <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
             <!-- <button  class="fav-btn">
@@ -46,6 +46,11 @@ export default {
       imageSrc: null,
       likeAdded: false,
     };
+  },
+  computed: {
+    userId() {
+      return this.$store.getters.userId;
+    },
   },
   mounted() {
     const img = new Image();

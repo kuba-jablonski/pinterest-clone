@@ -64,6 +64,7 @@ export default {
     },
     signOut() {
       firebase.auth().signOut();
+      this.setPinFilter('all');
     },
     toPins() {
       this.setMainComponent('app-pins');
@@ -72,7 +73,7 @@ export default {
     },
     toMyPins() {
       this.setMainComponent('app-pins');
-      this.setPinFilter('setPinFilter', 'user');
+      this.setPinFilter('user');
       this.activeTab = 'user-pins';
     },
     toAddPin() {
