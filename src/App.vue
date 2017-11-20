@@ -33,8 +33,8 @@ export default {
     ]),
     mainWidth() {
       return this.navbar
-        ? { width: 'calc(100% - 5rem)', left: '5rem' }
-        : { width: '100%', left: 0 };
+        ? { width: 'calc(100% - 5rem)', transform: 'translateX(5rem)' }
+        : { width: 'calc(100% -5rem)', transform: 'translateX(2.5rem)' };
     },
   },
   created() {
@@ -127,7 +127,7 @@ body {
 
 main {
   position: absolute;
-  transition: all 0.3s;
+  transition: transform 0.5s;
   top: 73px;
   padding: 0.5rem;
 }
