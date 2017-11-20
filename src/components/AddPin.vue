@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="savePin">
-    <img v-if="imageSrc" :src="imageSrc" alt="Image preview">
+    <!-- <img v-if="imageSrc" :src="imageSrc" alt="Image preview"> -->
     <h2 class="form-title"> Add a New Pin</h2>
     <label for="link">Image Url</label>
     <input v-model="imageUrl" type="text" name="link">
@@ -16,22 +16,22 @@ export default {
     return {
       imageUrl: '',
       imageTitle: '',
-      imageSrc: null,
+      // imageSrc: null,
     };
   },
-  watch: {
-    imageUrl(url) {
-      const img = new Image();
-      img.onload = () => {
-        this.imageSrc = url;
-      };
-      img.onerror = () => {
-        this.imageSrc = null;
-      };
+  // watch: {
+  //   imageUrl(url) {
+  //     const img = new Image();
+  //     img.onload = () => {
+  //       this.imageSrc = url;
+  //     };
+  //     img.onerror = () => {
+  //       this.imageSrc = null;
+  //     };
 
-      img.src = url;
-    },
-  },
+  //     img.src = url;
+  //   },
+  // },
   methods: {
     savePin() {
       if (this.verifyUrl(this.imageUrl) && (this.imageTitle.trim() !== '')) {
