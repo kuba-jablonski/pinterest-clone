@@ -2,7 +2,6 @@ import Vue from 'vue';
 import firebase from 'firebase';
 import { VueMasonryPlugin } from 'vue-masonry';
 import App from './App';
-import router from './router';
 import store from './store';
 
 Vue.use(VueMasonryPlugin);
@@ -18,7 +17,6 @@ firebase.initializeApp({
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
   store,
   render: h => h(App),
 });
