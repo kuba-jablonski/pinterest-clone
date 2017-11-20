@@ -58,6 +58,9 @@ export default {
         return pin;
       });
     },
+    setPinFilter: () => {
+      // todo
+    },
   },
   getters: {
     pins: state => _.values(state.pins).reverse(),

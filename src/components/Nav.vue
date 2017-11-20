@@ -20,18 +20,18 @@
           </a>
         </div>
         <div v-if="authenticated">
-          <router-link to="/" tag="a" active-class="active" exact class="nav-item">
+          <a @click="toPins" class="nav-item">
             <i class="fa fa-users fa-2x icon" aria-hidden="true"></i>
             Pins
-          </router-link>
-          <a class="nav-item">
+          </a>
+          <a @click="toMyPins" class="nav-item">
             <i class="fa fa-user fa-2x icon" aria-hidden="true"></i>
             My Pins
           </a>
-          <router-link to="/pin/new" tag="a" active-class="active" exact class="nav-item">
+          <a @click="toAddPin" class="nav-item">
             <i class="fa fa-plus fa-2x icon" aria-hidden="true"></i>
             Add Pin
-          </router-link>
+          </a>
           <a @click="signOut" class="nav-item">
             <i class="fa fa-sign-out fa-2x icon" aria-hidden="true"></i>
             Signout
@@ -55,6 +55,17 @@ export default {
     },
     signOut() {
       firebase.auth().signOut();
+    },
+    toPins() {
+      this.$store.dispatch('setMainComponent', 'app-pins');
+      this.$store.dispatch('setPinFilter', 'all');
+    },
+    toMyPins() {
+      this.$store.dispatch('setMainComponent', 'app-pins');
+      this.$store.dispatch('setPinFilter', 'all');
+    },
+    toAddPin() {
+      this.$store.dispatch('setMainComponent', 'app-add-pin');
     },
   },
   computed: {

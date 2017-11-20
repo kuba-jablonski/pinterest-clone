@@ -3,7 +3,7 @@
     <app-header/>
     <app-nav/>
     <main :style="mainWidth">
-      <router-view/>
+      <component :is="mainComponent"></component>
     </main>
   </div>
 </template>
@@ -13,15 +13,22 @@ import firebase from 'firebase';
 import { getProviderById, getValidCredential } from '@/firebaseHelpers';
 import Header from './components/Header';
 import Nav from './components/Nav';
+import Pins from './components/Pins';
+import AddPin from './components/AddPin';
 
 export default {
   components: {
     appHeader: Header,
     appNav: Nav,
+    appPins: Pins,
+    appAddPin: AddPin,
   },
   computed: {
     navbar() {
       return this.$store.getters.navbar;
+    },
+    mainComponent() {
+      return this.$store.getters.mainComponent;
     },
     mainWidth() {
       return this.navbar
