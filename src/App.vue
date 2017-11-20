@@ -10,6 +10,7 @@
 
 <script>
 import firebase from 'firebase';
+import { mapGetters } from 'vuex';
 import { getProviderById, getValidCredential } from '@/firebaseHelpers';
 import Header from './components/Header';
 import Nav from './components/Nav';
@@ -24,12 +25,10 @@ export default {
     appAddPin: AddPin,
   },
   computed: {
-    navbar() {
-      return this.$store.getters.navbar;
-    },
-    mainComponent() {
-      return this.$store.getters.mainComponent;
-    },
+    ...mapGetters([
+      'navbar',
+      'mainComponent',
+    ]),
     mainWidth() {
       return this.navbar
         ? { width: 'calc(100% - 5rem)', left: '5rem' }
@@ -82,7 +81,7 @@ export default {
     },
     showNavOnDesktop() {
       if (window.innerWidth > 800) {
-        this.$store.commit('TOGGLE_NAV');
+        this.$store.dispatch('toggleNav');
       }
     },
   },

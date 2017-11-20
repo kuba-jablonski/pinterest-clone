@@ -19,6 +19,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    toggleNav: ({ commit }) => {
+      commit('TOGGLE_NAV');
+    },
     setMainComponent: ({ commit }, componentName) => {
       commit('SET_MAIN_COMPONENT', componentName);
     },
