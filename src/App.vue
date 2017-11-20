@@ -40,7 +40,6 @@ export default {
   created() {
     this.$store.dispatch('watchAuthState');
     this.onRedirectResult();
-    this.showNavOnDesktop();
   },
   methods: {
     onRedirectResult() {
@@ -80,11 +79,6 @@ export default {
           const provider = getProviderById(providers[0]);
           firebase.auth().signInWithRedirect(provider);
         });
-    },
-    showNavOnDesktop() {
-      if (window.innerWidth > 800) {
-        this.$store.dispatch('toggleNav');
-      }
     },
   },
 };
