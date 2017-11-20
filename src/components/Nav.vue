@@ -44,11 +44,15 @@
 
 <script>
 import firebase from 'firebase';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import { getProviderById } from '@/firebaseHelpers';
 
 export default {
   methods: {
+    ...mapActions([
+      'setMainComponent',
+      'setPinFilter',
+    ]),
     signInWithProvider(providerId) {
       const provider = getProviderById(providerId);
       firebase.auth().signInWithRedirect(provider);
@@ -57,15 +61,15 @@ export default {
       firebase.auth().signOut();
     },
     toPins() {
-      this.$store.dispatch('setMainComponent', 'app-pins');
-      this.$store.dispatch('setPinFilter', 'all');
+      this.setMainComponent('app-pins');
+      this.setPinFilter('all');
     },
     toMyPins() {
-      this.$store.dispatch('setMainComponent', 'app-pins');
-      this.$store.dispatch('setPinFilter', 'all');
+      this.setMainComponent('app-pins');
+      this.setPinFilter('setPinFilter', 'user');
     },
     toAddPin() {
-      this.$store.dispatch('setMainComponent', 'app-add-pin');
+      this.setMainComponent('app-add-pin');
     },
   },
   computed: {
