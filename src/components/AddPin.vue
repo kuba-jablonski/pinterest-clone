@@ -24,6 +24,7 @@ export default {
           imageUrl: this.imageUrl,
           imageTitle: this.imageTitle,
         });
+        this.$store.dispatch('setMainComponent', 'app-pins');
       }
     },
     verifyUrl(url) {
@@ -72,5 +73,8 @@ button {
   background: $primary;
   margin-top: 1rem;
   padding: 7px 14px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 </style>
