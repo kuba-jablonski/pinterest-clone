@@ -20,15 +20,15 @@
           </a>
         </div>
         <div v-if="authenticated">
-          <a @click="toPins" class="nav-item">
+          <a @click="toPins" class="nav-item" :class="{ active: activeTab === 'pins' }">
             <i class="fa fa-users fa-2x icon" aria-hidden="true"></i>
             Pins
           </a>
-          <a @click="toMyPins" class="nav-item">
+          <a @click="toMyPins" class="nav-item" :class="{ active: activeTab === 'user-pins' }">
             <i class="fa fa-user fa-2x icon" aria-hidden="true"></i>
             My Pins
           </a>
-          <a @click="toAddPin" class="nav-item">
+          <a @click="toAddPin" class="nav-item" :class="{ active: activeTab === 'add-pin' }">
             <i class="fa fa-plus fa-2x icon" aria-hidden="true"></i>
             Add Pin
           </a>
@@ -48,6 +48,11 @@ import { mapGetters, mapActions } from 'vuex';
 import { getProviderById } from '@/firebaseHelpers';
 
 export default {
+  data() {
+    return {
+      activeTab: 'pins',
+    };
+  },
   methods: {
     ...mapActions([
       'setMainComponent',
@@ -63,13 +68,16 @@ export default {
     toPins() {
       this.setMainComponent('app-pins');
       this.setPinFilter('all');
+      this.activeTab = 'pins';
     },
     toMyPins() {
       this.setMainComponent('app-pins');
       this.setPinFilter('setPinFilter', 'user');
+      this.activeTab = 'user-pins';
     },
     toAddPin() {
       this.setMainComponent('app-add-pin');
+      this.activeTab = 'add-pin';
     },
   },
   computed: {

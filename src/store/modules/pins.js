@@ -4,6 +4,7 @@ import _ from 'lodash';
 export default {
   state: {
     pins: [],
+    pinFilter: 'all',
   },
   mutations: {
     CREATE_PINS_LIST: (state, pins) => {
@@ -14,6 +15,9 @@ export default {
     },
     ADD_LIKE: (state, id) => {
       state.pins[id].likesCount += 1;
+    },
+    SET_PIN_FILTER: (state, filter) => {
+      state.pinFilter = filter;
     },
   },
   actions: {
@@ -58,11 +62,18 @@ export default {
         return pin;
       });
     },
-    setPinFilter: () => {
-      // todo
+    setPinFilter: ({ commit }, filter) => {
+      commit('SET_PIN_FILTER', filter);
     },
   },
   getters: {
-    pins: state => _.values(state.pins).reverse(),
+    pins: (state, getters) => {
+      const pins = _.values(state.pins).reverse();
+
+      if (state.pinFilter === 'user') {
+        return pins.filter(pin => pin.author.uid === getters.userId);
+      }
+      return pins;
+    },
   },
 };
