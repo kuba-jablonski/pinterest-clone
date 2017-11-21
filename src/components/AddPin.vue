@@ -68,7 +68,7 @@ export default {
 <style lang="scss" scoped>
 form {
   background: #fff;
-  width: 90%;
+  width: 100%;
   max-width: 600px;
   padding: 2rem;
   margin: 1rem auto;
@@ -76,7 +76,7 @@ form {
   .form-title {
     margin: 0;
     text-align: center;
-    font-size: 24px;
+    font-size: 22px;
     text-transform: uppercase;
     font-weight: 500;
   }
