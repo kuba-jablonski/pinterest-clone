@@ -74,7 +74,7 @@ export default {
     },
     toAddPin() {
       this.setMainComponent('app-add-pin');
-      this.setActiveTab('add-pins');
+      this.setActiveTab('add-pin');
     },
   },
   computed: {

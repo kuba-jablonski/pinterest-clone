@@ -51,6 +51,7 @@ export default {
           imageTitle: this.imageTitle,
         });
         this.$store.dispatch('setMainComponent', 'app-pins');
+        this.$store.dispatch('setActiveTab', 'pins');
       }
     },
     verifyUrl(url) {
