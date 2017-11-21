@@ -105,6 +105,10 @@ button {
   &:hover {
     cursor: pointer;
   }
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
 }
 
 .input--error {
