@@ -1,6 +1,6 @@
 <template>
-  <header>
-    <div class="header-content">
+  <header class="header">
+    <div class="header__content">
       <i @click="toggleNav" class="fa fa-bars menu" aria-hidden="true"></i>
       <h1 class="brand">Pinclone</h1>
     </div>
@@ -19,7 +19,7 @@ export default {
 
 
 <style lang="scss" scoped>
-header {
+.header {
   position: fixed;
   width: 100%;
   z-index: 1;
