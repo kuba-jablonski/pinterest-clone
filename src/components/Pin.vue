@@ -11,7 +11,7 @@
             <!-- <button  class="fav-btn">
               <i class="fa fa-star-o" aria-hidden="true"></i>
             </button> -->
-            <button @click="addLike" class="like-btn">
+            <button v-if="userId" @click="addLike" class="like-btn">
               <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
             </button>
           </div>
