@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     navbar: true,
     mainComponent: 'app-pins',
+    activeTab: 'pins',
   },
   mutations: {
     TOGGLE_NAV: (state) => {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     },
     SET_MAIN_COMPONENT: (state, componentName) => {
       state.mainComponent = componentName;
+    },
+    SET_ACTIVE_TAB: (state, tab) => {
+      state.activeTab = tab;
     },
   },
   actions: {
@@ -25,10 +29,14 @@ export default new Vuex.Store({
     setMainComponent: ({ commit }, componentName) => {
       commit('SET_MAIN_COMPONENT', componentName);
     },
+    setActiveTab: ({ commit }, tab) => {
+      commit('SET_ACTIVE_TAB', tab);
+    },
   },
   getters: {
     navbar: state => state.navbar,
     mainComponent: state => state.mainComponent,
+    activeTab: state => state.activeTab,
   },
   modules: { user, pins },
 });

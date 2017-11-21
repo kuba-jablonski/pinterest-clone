@@ -48,15 +48,11 @@ import { mapGetters, mapActions } from 'vuex';
 import { getProviderById } from '@/firebaseHelpers';
 
 export default {
-  data() {
-    return {
-      activeTab: 'pins',
-    };
-  },
   methods: {
     ...mapActions([
       'setMainComponent',
       'setPinFilter',
+      'setActiveTab',
     ]),
     signInWithProvider(providerId) {
       const provider = getProviderById(providerId);
@@ -69,22 +65,23 @@ export default {
     toPins() {
       this.setMainComponent('app-pins');
       this.setPinFilter('all');
-      this.activeTab = 'pins';
+      this.setActiveTab('pins');
     },
     toMyPins() {
       this.setMainComponent('app-pins');
       this.setPinFilter('user');
-      this.activeTab = 'user-pins';
+      this.setActiveTab('user-pins');
     },
     toAddPin() {
       this.setMainComponent('app-add-pin');
-      this.activeTab = 'add-pin';
+      this.setActiveTab('add-pins');
     },
   },
   computed: {
     ...mapGetters([
       'navbar',
       'authenticated',
+      'activeTab',
     ]),
   },
 };
