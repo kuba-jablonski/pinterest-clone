@@ -135,13 +135,13 @@ export default {
       cursor: pointer;
       box-shadow: 2px 4px 5px 0px rgba(41, 41, 41, 0.3);
       &.delete-btn {
-        background: #ff8a80;
+        background: $red;
       }
       &.fav-btn {
-        background: #f4ff81;
+        background: $yellow;
       }
       &.like-btn {
-        background: #ccff90;
+        background: $green;
       }
     }
   }

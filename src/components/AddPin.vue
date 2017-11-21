@@ -1,12 +1,11 @@
 <template>
   <form @submit.prevent="savePin">
-    <!-- <img v-if="imageSrc" :src="imageSrc" alt="Image preview"> -->
     <h2 class="form-title"> Add a New Pin</h2>
     <label for="link">Image Url</label>
-    <input v-model="imageUrl" type="text" name="link">
+    <input :class="{'input--success': validImage, 'input--error': validImage === false}" v-model="imageUrl" type="text" name="link">
     <label for="title">Title</label>
-    <input v-model="imageTitle" type="text" name="title">
-    <button>Submit</button>
+    <input :class="{'input--success': validTitle, 'input--error': validTitle === false}" v-model="imageTitle" type="text" name="title">
+    <button :disabled="!(validImage && validTitle)">Submit</button>
   </form>
 </template>
 
@@ -16,25 +15,37 @@ export default {
     return {
       imageUrl: '',
       imageTitle: '',
-      // imageSrc: null,
+      validImage: null,
+      validTitle: null,
     };
   },
-  // watch: {
-  //   imageUrl(url) {
-  //     const img = new Image();
-  //     img.onload = () => {
-  //       this.imageSrc = url;
-  //     };
-  //     img.onerror = () => {
-  //       this.imageSrc = null;
-  //     };
+  watch: {
+    imageUrl(url) {
+      if (this.verifyUrl(url)) {
+        const img = new Image();
+        img.onload = () => {
+          this.validImage = true;
+        };
+        img.onerror = () => {
+          this.validImage = false;
+        };
 
-  //     img.src = url;
-  //   },
-  // },
+        img.src = url;
+      } else {
+        this.validImage = false;
+      }
+    },
+    imageTitle(title) {
+      if (this.verifyTitle(title)) {
+        this.validTitle = true;
+      } else {
+        this.validTitle = false;
+      }
+    },
+  },
   methods: {
     savePin() {
-      if (this.verifyUrl(this.imageUrl) && (this.imageTitle.trim() !== '')) {
+      if (this.verifyUrl(this.imageUrl) && this.verifyTitle(this.imageTitle)) {
         this.$store.dispatch('savePin', {
           imageUrl: this.imageUrl,
           imageTitle: this.imageTitle,
@@ -44,6 +55,9 @@ export default {
     },
     verifyUrl(url) {
       return (url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+    },
+    verifyTitle(title) {
+      return title.trim() !== '' && title.trim().length <= 100;
     },
   },
 };
@@ -80,7 +94,7 @@ input {
   display: block;
   width: 100%;
   padding: 5px 10px;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
 }
 
 button {
@@ -91,5 +105,13 @@ button {
   &:hover {
     cursor: pointer;
   }
+}
+
+.input--error {
+  border-color: $red;
+}
+
+.input--success {
+  border-color: #8bc34a;
 }
 </style>
