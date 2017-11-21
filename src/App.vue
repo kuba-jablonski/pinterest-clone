@@ -2,7 +2,7 @@
   <div class="app">
     <app-header/>
     <app-nav/>
-    <main :style="mainWidth">
+    <main class="main" :style="mainWidth">
       <transition name="fade" mode="out-in">
         <component :is="mainComponent"></component>
       </transition>
@@ -109,17 +109,7 @@ body {
 </style>
 
 <style lang="scss" scoped>
-.app {
-  display: flex;
-  flex-direction: column;
-}
-
-.display {
-  display: flex;
-  flex-grow: 1;
-}
-
-main {
+.main {
   position: absolute;
   transition: transform 0.5s;
   top: 73px;
