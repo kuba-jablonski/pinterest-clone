@@ -2,9 +2,21 @@
   <form @submit.prevent="savePin">
     <h2 class="form-title"> Add a New Pin</h2>
     <label for="link">Image Url</label>
-    <input :class="{'input--success': validImage, 'input--error': validImage === false}" v-model="imageUrl" type="text" name="link">
+    <input
+      :class="{'input--success': validImage, 'input--error': validImage === false}"
+      v-model="imageUrl" 
+      type="text" 
+      name="link"
+      autocomplete="off"
+    >
     <label for="title">Title</label>
-    <input :class="{'input--success': validTitle, 'input--error': validTitle === false}" v-model="imageTitle" type="text" name="title">
+    <input
+      :class="{'input--success': validTitle, 'input--error': validTitle === false}"
+      v-model="imageTitle"
+      type="text"
+      name="title"
+      autocomplete="off"  
+    >
     <button :disabled="!(validImage && validTitle)">Submit</button>
   </form>
 </template>
