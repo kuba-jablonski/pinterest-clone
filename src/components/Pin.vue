@@ -2,30 +2,30 @@
   <transition name="fade" @after-leave="$redrawVueMasonry">
     <div v-masonry-tile v-if="imageSrc" class="item">
       <div class="pin">
-        <div class="image-wrapper">
-          <img :src="imageSrc" alt="An Image">
-          <div class="actions-buttons">
-            <button v-if="userId === pin.author.uid" @click="deletePin" class="delete-btn">
+        <div class="pin__image-wrapper">
+          <img class="pin__image" :src="imageSrc" alt="An Image">
+          <div class="pin__action-buttons">
+            <button v-if="userId === pin.author.uid" @click="deletePin" class="pin__btn pin__btn--delete">
               <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
             <!-- <button  class="fav-btn">
               <i class="fa fa-star-o" aria-hidden="true"></i>
             </button> -->
-            <button v-if="userId" @click="addLike" class="like-btn">
+            <button v-if="userId" @click="addLike" class="pin__btn pin__btn--like">
               <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
             </button>
           </div>
         </div>
-        <div class="pin-info">
-          <h2 class="title">
+        <div class="pin__info">
+          <h2 class="pin__title">
             {{ pin.imageTitle }}
           </h2>
-          <div class="details">
-            <div class="created">
+          <div class="pin__details">
+            <div class="pin__details-text">
               <i class="fa fa-clock-o" aria-hidden="true"></i>
               {{ pin.createdAt | displayTimeSince }}
             </div>
-            <div class="likes">
+            <div class="pin__details-text">
               <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
               {{ pin.likesCount }} likes
             </div>
@@ -101,24 +101,26 @@ export default {
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-  &:hover {
-    img {
-      filter: grayscale(60%);
-    }
-    .actions-buttons {
-      opacity: 100;
-    }
-  }
-}
 
-.image-wrapper {
-  position: relative;
-  width: 100%;
-  img {
+  &:hover &__image {
+    filter: grayscale(60%);
+  }
+
+  &:hover &__action-buttons {
+    opacity: 100;
+  }
+
+  &__image-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  &__image {
     transition: filter 0.5s;
     width: 100%;
   }
-  .actions-buttons {
+
+  &__action-buttons {
     opacity: 0;
     transition: opacity 0.5s;
     position: absolute;
@@ -126,33 +128,38 @@ export default {
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    button {
-      width: 50px;
-      height: 50px;
-      font-size: 18px;
-      margin-right: 1rem;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 2px 4px 5px 0px rgba(41, 41, 41, 0.3);
-      &.delete-btn {
-        background: $red;
-      }
-      &.fav-btn {
-        background: $yellow;
-      }
-      &.like-btn {
-        background: $green;
-      }
+  }
+
+  &__btn {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    margin-right: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 2px 4px 5px 0px rgba(41, 41, 41, 0.3);
+
+    &--delete {
+      background: $red;
+    }
+
+    &--fav {
+      background: $yellow;
+    }
+
+    &--like {
+      background: $green;
     }
   }
-}
 
-.pin-info {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .title {
+  &__info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
     font-weight: 400;
     font-size: 16px;
     text-align: center;
@@ -162,7 +169,8 @@ export default {
     padding-top: 10px;
     padding-bottom: 5px;
   }
-  .details {
+
+  &__details {
     display: flex;
     width: 90%;
     text-align: center;
@@ -170,10 +178,10 @@ export default {
     font-size: 13px;
     color: #7c7c7c;
     font-weight: 600;
-    .created,
-    .likes {
-      padding: 5px 10px 5px 5px;
-    }
+  }
+
+  &__details-text {
+    padding: 5px 10px 5px 5px;
   }
 }
 
