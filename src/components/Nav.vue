@@ -3,6 +3,10 @@
     <nav class="nav" v-show="navbar">
       <transition name="fade" mode="out-in">
         <div v-if="authenticated === false">
+          <a @click="toPins" class="nav__item" :class="{ active: activeTab === 'pins' }">
+            <i class="fa fa-users fa-2x icon" aria-hidden="true"></i>
+            Pins
+          </a>
           <div class="nav__head ">
             Login
           </div>
@@ -103,7 +107,6 @@ export default {
     border-bottom: 1px solid #fff;
     text-align: center;
     margin: 0 auto;
-    padding-top: 1rem;
   }
   &__item {
     display: block;
