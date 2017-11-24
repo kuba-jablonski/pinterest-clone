@@ -12,7 +12,7 @@
     <label for="title">Title</label>
     <input
       :class="{'input--success': validTitle, 'input--error': validTitle === false}"
-      v-model="imageTitle"
+      v-model.trim="imageTitle"
       type="text"
       name="title"
       autocomplete="off"  
@@ -33,22 +33,18 @@ export default {
   },
   watch: {
     imageUrl(url) {
-      if (this.verifyUrl(url)) {
-        const img = new Image();
-        img.onload = () => {
-          this.validImage = true;
-        };
-        img.onerror = () => {
-          this.validImage = false;
-        };
-
-        img.src = url;
-      } else {
+      const img = new Image();
+      img.onload = () => {
+        this.validImage = true;
+      };
+      img.onerror = () => {
         this.validImage = false;
-      }
+      };
+
+      img.src = url;
     },
     imageTitle(title) {
-      if (this.verifyTitle(title)) {
+      if (title !== '' && title.length <= 100) {
         this.validTitle = true;
       } else {
         this.validTitle = false;
@@ -57,7 +53,7 @@ export default {
   },
   methods: {
     savePin() {
-      if (this.verifyUrl(this.imageUrl) && this.verifyTitle(this.imageTitle)) {
+      if (this.validImage && this.validTitle) {
         this.$store.dispatch('savePin', {
           imageUrl: this.imageUrl,
           imageTitle: this.imageTitle,
@@ -65,12 +61,6 @@ export default {
         this.$store.dispatch('setMainComponent', 'app-pins');
         this.$store.dispatch('setActiveTab', 'pins');
       }
-    },
-    verifyUrl(url) {
-      return (url.match(/\.(jpeg|jpg|gif|png)$/) != null);
-    },
-    verifyTitle(title) {
-      return title.trim() !== '' && title.trim().length <= 100;
     },
   },
 };
@@ -115,6 +105,7 @@ button {
   background: $primary;
   margin-top: 1rem;
   padding: 7px 14px;
+  transition: opacity 0.3s;
   &:hover {
     cursor: pointer;
   }
