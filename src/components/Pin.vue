@@ -203,7 +203,7 @@ export default {
   }
 
   &__author {
-    padding: 5px 0 2px 5px;
+    padding: 7px 0 3px 5px;
     font-size: 14px;
     color: #7c7c7c;
     font-weight: 600;
