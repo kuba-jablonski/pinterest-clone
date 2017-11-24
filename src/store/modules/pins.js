@@ -72,8 +72,11 @@ export default {
 
       if (state.pinFilter === 'user') {
         return pins.filter(pin => pin.author.uid === getters.userId);
+      } else if (state.pinFilter === 'all') {
+        return pins;
       }
-      return pins;
+
+      return pins.filter(pin => pin.author.uid === state.pinFilter);
     },
   },
 };

@@ -21,13 +21,21 @@
             {{ pin.imageTitle }}
           </h2>
           <div class="pin__details">
-            <div class="pin__details-text">
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
-              {{ pin.createdAt | displayTimeSince }}
+            <div class="pin__top-details">
+              <div @click="setPinFilter(pin.author.uid)" class="pin__author">
+                <i class="fa fa-user-o" aria-hidden="true"></i>
+                {{ pin.author.displayName }}
+              </div>
             </div>
-            <div class="pin__details-text">
-              <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-              {{ pin.likesCount }} likes
+            <div class="pin__bottom-details">
+              <div class="pin__details-text">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                {{ pin.createdAt | displayTimeSince }}
+              </div>
+              <div class="pin__details-text">
+                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                {{ pin.likesCount }} likes
+              </div>
             </div>
           </div>
         </div>
@@ -70,6 +78,10 @@ export default {
         this.$store.dispatch('addLike', this.pin.id);
       }
     },
+    setPinFilter(id) {
+      this.$store.dispatch('setPinFilter', id);
+      this.$store.dispatch('setActiveTab', 'none');
+    },
   },
   filters: {
     displayTimeSince(date) {
@@ -108,6 +120,10 @@ export default {
 
   &:hover &__action-buttons {
     opacity: 100;
+  }
+
+  &:hover &__author {
+    color: $primary;
   }
 
   &__image-wrapper {
@@ -166,22 +182,33 @@ export default {
     width: 90%;
     margin: 0;
     border-bottom: 2px solid $secondary;
-    padding-top: 10px;
-    padding-bottom: 5px;
+    padding-top: 13px;
+    padding-bottom: 7px;
   }
 
   &__details {
-    display: flex;
     width: 90%;
-    text-align: center;
-    padding: 5px 0;
-    font-size: 13px;
     color: #7c7c7c;
     font-weight: 600;
   }
 
+  &__bottom-details {
+    display: flex;
+    text-align: center;
+    font-size: 13px;
+  }
+
   &__details-text {
-    padding: 5px 10px 5px 5px;
+    padding: 0 10px 5px 5px;
+  }
+
+  &__author {
+    padding: 5px 0 2px 5px;
+    font-size: 14px;
+    color: #7c7c7c;
+    font-weight: 600;
+    transition: color 0.3s;
+    cursor: pointer;
   }
 }
 
