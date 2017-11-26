@@ -7,7 +7,7 @@
         <component :is="mainComponent"></component>
       </transition>
     </main>
-    <app-modal></app-modal>
+    <app-modal v-if="modal.show" :image="modal.image" />
   </div>
 </template>
 
@@ -19,6 +19,7 @@ import Header from './components/Header';
 import Nav from './components/Nav';
 import Pins from './components/Pins';
 import AddPin from './components/AddPin';
+import Modal from './components/Modal';
 
 export default {
   components: {
@@ -26,10 +27,12 @@ export default {
     appNav: Nav,
     appPins: Pins,
     appAddPin: AddPin,
+    appModal: Modal,
   },
   computed: {
     ...mapGetters([
       'navbar',
+      'modal',
       'mainComponent',
     ]),
     mainWidth() {

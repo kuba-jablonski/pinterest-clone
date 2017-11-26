@@ -8,12 +8,20 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     navbar: true,
+    modal: {
+      show: false,
+      image: null,
+    },
     mainComponent: 'app-pins',
     activeTab: 'pins',
   },
   mutations: {
     TOGGLE_NAV: (state) => {
       state.navbar = !state.navbar;
+    },
+    TOGGLE_MODAL: (state, image) => {
+      state.modal.show = !state.modal.show;
+      state.modal.image = image;
     },
     SET_MAIN_COMPONENT: (state, componentName) => {
       state.mainComponent = componentName;
@@ -26,6 +34,9 @@ export default new Vuex.Store({
     toggleNav: ({ commit }) => {
       commit('TOGGLE_NAV');
     },
+    toggleModal: ({ commit }, image = null) => {
+      commit('TOGGLE_MODAL', image);
+    },
     setMainComponent: ({ commit }, componentName) => {
       commit('SET_MAIN_COMPONENT', componentName);
     },
@@ -35,6 +46,7 @@ export default new Vuex.Store({
   },
   getters: {
     navbar: state => state.navbar,
+    modal: state => state.modal,
     mainComponent: state => state.mainComponent,
     activeTab: state => state.activeTab,
   },
