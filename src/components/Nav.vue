@@ -5,7 +5,7 @@
         <div v-if="authenticated === false">
           <a @click="toPins" class="nav__item" :class="{ active: activeTab === 'pins' }">
             <i class="fa fa-users fa-2x icon" aria-hidden="true"></i>
-            Pins
+            All Pins
           </a>
           <div class="nav__head ">
             Login
@@ -111,7 +111,7 @@ export default {
   &__item {
     display: block;
     cursor: pointer;
-    color: #ede7f6;
+    color: lighten($primary, 30%);
     text-transform: uppercase;
     text-decoration: none;
     text-align: center;
