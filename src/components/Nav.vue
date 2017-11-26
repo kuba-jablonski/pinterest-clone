@@ -26,7 +26,7 @@
         <div v-if="authenticated">
           <a @click="toPins" class="nav__item" :class="{ active: activeTab === 'pins' }">
             <i class="fa fa-users fa-2x icon" aria-hidden="true"></i>
-            Pins
+            All Pins
           </a>
           <a @click="toMyPins" class="nav__item" :class="{ active: activeTab === 'user-pins' }">
             <i class="fa fa-user fa-2x icon" aria-hidden="true"></i>
