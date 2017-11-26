@@ -7,6 +7,7 @@
         <component :is="mainComponent"></component>
       </transition>
     </main>
+    <app-modal></app-modal>
   </div>
 </template>
 
