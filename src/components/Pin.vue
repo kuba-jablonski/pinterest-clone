@@ -8,9 +8,9 @@
             <button v-if="userId === pin.author.uid" @click="deletePin" class="pin__btn pin__btn--delete">
               <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
-            <!-- <button  class="fav-btn">
-              <i class="fa fa-star-o" aria-hidden="true"></i>
-            </button> -->
+            <button @click="openModal" class="pin__btn pin__btn--fullscreen">
+              <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+            </button>
             <button v-if="userId" @click="addLike" class="pin__btn pin__btn--like">
               <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
             </button>
@@ -81,6 +81,9 @@ export default {
     setPinFilter(id) {
       this.$store.dispatch('setPinFilter', id);
       this.$store.dispatch('setActiveTab', 'none');
+    },
+    openModal() {
+      this.$store.dispatch('toggleModal', this.imageSrc);
     },
   },
   filters: {
@@ -159,7 +162,7 @@ export default {
       background: $red;
     }
 
-    &--fav {
+    &--fullscreen {
       background: $yellow;
     }
 
