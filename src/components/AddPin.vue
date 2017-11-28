@@ -6,7 +6,7 @@
       :class="{'input--success': validImage, 'input--error': validImage === false}"
       v-model="imageUrl" 
       type="text" 
-      name="link"
+      id="link"
       autocomplete="off"
     >
     <label for="title">Title</label>
@@ -14,7 +14,7 @@
       :class="{'input--success': validTitle, 'input--error': validTitle === false}"
       v-model.trim="imageTitle"
       type="text"
-      name="title"
+      id="title"
       autocomplete="off"  
     >
     <button :disabled="!(validImage && validTitle)">Submit</button>
